@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 public class JSONUtils {
 
+	// this method returns the json array from the json file provided at the given Location
 	public static JSONArray getJSONArray(String jsonLocation) throws Exception {
 		JSONParser jsonParser = new JSONParser();
 		return (JSONArray) jsonParser.parse(new FileReader(jsonLocation));
