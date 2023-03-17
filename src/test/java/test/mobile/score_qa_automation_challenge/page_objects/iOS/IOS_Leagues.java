@@ -5,6 +5,11 @@ import test.mobile.score_qa_automation_challenge.page_objects.common.Leagues;
 public class IOS_Leagues extends Leagues {
 
     @Override
+    public String getScreenTitle() {
+        return null;
+    }
+
+    @Override
     public void selectLeague(String leagueName) {
 
     }

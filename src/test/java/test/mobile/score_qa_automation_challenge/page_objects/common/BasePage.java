@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.mobile.score_qa_automation_challenge.base.DriverManager;
 
 import java.time.Duration;
@@ -22,11 +23,10 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-	AppiumDriver driver;
+	protected AppiumDriver driver;
 
 	public BasePage() {
 		this.driver = DriverManager.getAppiumDriver();
-		this.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	}
 
 	public void click(By by) {
@@ -56,6 +56,10 @@ public class BasePage {
 		return driver.findElements(by).size();
 	}
 
+	public String getText(By by){
+		return driver.findElement(by).getText();
+	}
+
 	public void waitAndSoftClick(By by){
 		new FluentWait(driver)
 				.withTimeout(Duration.ofSeconds(3))
@@ -63,6 +67,15 @@ public class BasePage {
 		        .ignoring(NoSuchElementException.class)
 				.ignoring(TimeoutException.class)
 				.until(ExpectedConditions.elementToBeClickable(by));
+	}
+
+	public void waitFor(long time) {
+		try {
+			Thread.sleep(time);
+		}
+		catch (InterruptedException e){
+			return;
+		}
 	}
 
 }

@@ -6,8 +6,8 @@ import io.cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty", "json:target/cucumber.json",
         "html:target/cucumber"},
-        features = "classpath:test_scenarios/",
-        glue = {"classpath:test_setup.Hooks", "classpath:test_steps"},
+        features = "src/test/resources/features",
+        glue = {"classpath:test.mobile.score_qa_automation_challenge.test_setup.Hooks", "classpath:stepdefs"},
         tags = "@SanityTests")
 public class TestRunner {
 }

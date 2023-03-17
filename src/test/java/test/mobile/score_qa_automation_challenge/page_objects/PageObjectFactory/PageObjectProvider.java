@@ -12,7 +12,6 @@ import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 public class PageObjectProvider {
 
 	public static Object getPageObject(String pageName) {
-//		PropertiesUtils.put("platform", "ANDROID");
 		switch (DevicePlatform.valueOf(PropertiesUtils.get("platform"))) {
 		case ANDROID:
 			try {

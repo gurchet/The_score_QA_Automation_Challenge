@@ -12,16 +12,11 @@ import test.mobile.score_qa_automation_challenge.page_objects.common.Leagues;
  *        platform script to perform sequence actions)
  */
 
-public class LeagueSelection {
+public class League_BusinessFlow {
 
-	public void verifyIfTheScreenIsHomeScreen() {
-		Home home = (Home) PageObjectProvider.getPageObject("Home");
-		Assert.assertTrue(home.isHomeScreen());
-	}
-
-	public void goToLeageSelectionPage() {
-		Home homePageObject = (Home) PageObjectProvider.getPageObject("Home");
-		homePageObject.goToLeagueSelectionPage();
+	public void verifyIfTheScreenIsLeagueSelectionScreen() {
+		Leagues league = (Leagues) PageObjectProvider.getPageObject("Leagues");
+		Assert.assertEquals("choose your favorite leagues", league.getScreenTitle());
 	}
 
 	public void verifyTheLeaguesSelection(String[] leaguesArray) {
