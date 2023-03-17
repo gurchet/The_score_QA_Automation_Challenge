@@ -46,4 +46,8 @@ public class PropertiesUtils {
 	public static void put(String key, String value) {
 		properties.setProperty(key, value);
 	}
+
+	public static void putAll(Properties properties) {
+		properties.putAll(properties);
+	}
 }

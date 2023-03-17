@@ -9,8 +9,17 @@ package test.mobile.score_qa_automation_challenge.base;
 
 public class Constants {
 
-	  enum Platform {
-		    Android,
-		    iOS
-		  }
+	  public enum DevicePlatform {
+		  
+			ANDROID("android"), IOS("ios");
+			private final String name;
+		  
+			DevicePlatform(String name) {
+				this.name = name;
+			}
+
+			public String getName() {
+				return this.name;
+			}
+	  }
 }
