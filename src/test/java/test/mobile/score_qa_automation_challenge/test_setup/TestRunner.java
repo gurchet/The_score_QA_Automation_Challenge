@@ -7,7 +7,7 @@ import io.cucumber.junit.Cucumber;
 @CucumberOptions(plugin = {"pretty", "json:target/cucumber.json",
         "html:target/cucumber"},
         features = "classpath:test_scenarios/",
-        glue = {"classpath:test.mobile.score_qa_automation_challenge.test_setup.Hooks", "classpath:test.mobile.score_qa_automation_challenge.test_steps"},
+        glue = {"classpath:test_setup.Hooks", "classpath:test_steps"},
         tags = "@SanityTests")
 public class TestRunner {
 }

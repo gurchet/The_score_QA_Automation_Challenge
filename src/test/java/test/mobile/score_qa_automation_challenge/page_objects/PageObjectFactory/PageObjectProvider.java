@@ -1,7 +1,6 @@
 package test.mobile.score_qa_automation_challenge.page_objects.PageObjectFactory;
 
 import test.mobile.score_qa_automation_challenge.base.Constants.DevicePlatform;
-import test.mobile.score_qa_automation_challenge.page_objects.common.BasePage;
 import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
 /**
@@ -13,11 +12,11 @@ import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 public class PageObjectProvider {
 
 	public static Object getPageObject(String pageName) {
-		
+//		PropertiesUtils.put("platform", "ANDROID");
 		switch (DevicePlatform.valueOf(PropertiesUtils.get("platform"))) {
 		case ANDROID:
 			try {
-				return Class.forName(PropertiesUtils.get("android_page_objects_package") + "." + pageName)
+				return Class.forName(PropertiesUtils.get("android_page_objects_package") + "." + "Android_" + pageName)
 						.newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -25,7 +24,7 @@ public class PageObjectProvider {
 			}
 		case IOS:
 			try {
-				return Class.forName(PropertiesUtils.get("ios_page_objects_package") + "." + pageName).newInstance();
+				return Class.forName(PropertiesUtils.get("ios_page_objects_package") + "." + "IOS_" + pageName).newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;

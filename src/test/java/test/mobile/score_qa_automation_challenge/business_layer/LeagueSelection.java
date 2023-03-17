@@ -1,7 +1,9 @@
 package test.mobile.score_qa_automation_challenge.business_layer;
 
+import org.junit.Assert;
 import test.mobile.score_qa_automation_challenge.page_objects.PageObjectFactory.PageObjectProvider;
-import test.mobile.score_qa_automation_challenge.page_objects.common.Dashboard;
+import test.mobile.score_qa_automation_challenge.page_objects.common.Home;
+import test.mobile.score_qa_automation_challenge.page_objects.common.Leagues;
 
 /**
  * @author gurchet.singh
@@ -12,9 +14,28 @@ import test.mobile.score_qa_automation_challenge.page_objects.common.Dashboard;
 
 public class LeagueSelection {
 
-	public void goToLeageSelectionPage() {
-		Dashboard dashboard = (Dashboard)PageObjectProvider.getPageObject("Dashboard");
-		dashboard.goToLeagueSelectionPage();
+	public void verifyIfTheScreenIsHomeScreen() {
+		Home home = (Home) PageObjectProvider.getPageObject("Home");
+		Assert.assertTrue(home.isHomeScreen());
 	}
-	
+
+	public void goToLeageSelectionPage() {
+		Home homePageObject = (Home) PageObjectProvider.getPageObject("Home");
+		homePageObject.goToLeagueSelectionPage();
+	}
+
+	public void verifyTheLeaguesSelection(String[] leaguesArray) {
+		Leagues leaguesPageObject = (Leagues) PageObjectProvider.getPageObject("Leagues");
+		for (String league : leaguesArray) {
+			leaguesPageObject.selectLeague(league);
+			Assert.assertTrue(leaguesPageObject.isLeagueSelected(league));
+		}
+		Assert.assertEquals(leaguesArray.length, leaguesPageObject.getTotalLeaguesSelected());
+	}
+
+
+	public void goToTeamsSelectionPage() {
+		Leagues leaguesPageObject = (Leagues) PageObjectProvider.getPageObject("Leagues");
+		leaguesPageObject.continueNext();
+	}
 }

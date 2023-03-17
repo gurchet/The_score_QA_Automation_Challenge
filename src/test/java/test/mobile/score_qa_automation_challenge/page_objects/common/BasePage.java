@@ -1,14 +1,16 @@
 package test.mobile.score_qa_automation_challenge.page_objects.common;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import test.mobile.score_qa_automation_challenge.base.DriverManager;
-import test.mobile.score_qa_automation_challenge.base.Constants.DevicePlatform;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author gurchet.singh
@@ -24,6 +26,7 @@ public class BasePage {
 
 	public BasePage() {
 		this.driver = DriverManager.getAppiumDriver();
+		this.driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	}
 
 	public void click(By by) {
@@ -34,8 +37,32 @@ public class BasePage {
 		driver.findElement(by).sendKeys(text);
 	}
 
-	public String waitAndExtractText(By by) {
+	public String extractText(By by) {
 		return driver.findElement(by).getText();
+	}
+
+	public boolean isElementPresent(By by) {
+		WebElement element;
+		try {
+			element = driver.findElement(by);
+		}
+		catch(NoSuchElementException exception){
+			return false;
+		}
+		return element.isDisplayed();
+	}
+
+	public int getTotalMatchedNoOfElements(By by){
+		return driver.findElements(by).size();
+	}
+
+	public void waitAndSoftClick(By by){
+		new FluentWait(driver)
+				.withTimeout(Duration.ofSeconds(3))
+				.pollingEvery(Duration.ofMillis(250))
+		        .ignoring(NoSuchElementException.class)
+				.ignoring(TimeoutException.class)
+				.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
 }

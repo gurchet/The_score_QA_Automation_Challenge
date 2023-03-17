@@ -5,9 +5,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import test.mobile.score_qa_automation_challenge.base.Constants.DevicePlatform;
 import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
 /**
