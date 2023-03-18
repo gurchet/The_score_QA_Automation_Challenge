@@ -16,6 +16,8 @@ public class Android_Leagues extends Leagues {
 
     By btnContinue = By.xpath("//*[@text='Continue']");
 
+    By btnBack = By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']");
+
     public Android_Leagues(){
         super();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -24,6 +26,11 @@ public class Android_Leagues extends Leagues {
     @Override
     public String getScreenTitle() {
         return getText(titleText);
+    }
+
+    @Override
+    public void navigateBack() {
+        click(btnBack);
     }
 
     @Override

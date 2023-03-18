@@ -3,6 +3,7 @@ package test.mobile.score_qa_automation_challenge.stepdefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import test.mobile.score_qa_automation_challenge.business_layer.League_BusinessFlow;
 import test.mobile.score_qa_automation_challenge.business_layer.Team_BusinessFlow;
 
 public class TeamSelectionSteps {
@@ -56,5 +57,10 @@ public class TeamSelectionSteps {
     @And("User should be able to see the selected {string}")
     public void checkIfAllSelectedTeamsAvailable(String teams){
         new Team_BusinessFlow().verifyIfSelectedTeamsAvailableInDashboard(teams.split(","));
+    }
+
+    @When("User goes to back to the previous page from team page")
+    public void goToPreviousPage() {
+        new Team_BusinessFlow().navigateToPreviousScreen();
     }
 }

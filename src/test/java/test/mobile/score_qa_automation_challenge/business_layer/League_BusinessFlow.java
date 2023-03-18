@@ -16,7 +16,7 @@ public class League_BusinessFlow {
 
 	public void verifyIfTheScreenIsLeagueSelectionScreen() {
 		Leagues league = (Leagues) PageObjectProvider.getPageObject("Leagues");
-		Assert.assertEquals("choose your favorite leagues", league.getScreenTitle());
+		Assert.assertEquals("Choose your favorite leagues", league.getScreenTitle());
 	}
 
 	public void verifyTheLeaguesSelection(String[] leaguesArray) {
@@ -33,4 +33,10 @@ public class League_BusinessFlow {
 		Leagues leaguesPageObject = (Leagues) PageObjectProvider.getPageObject("Leagues");
 		leaguesPageObject.continueNext();
 	}
+
+	public void navigateToPreviousScreen(){
+		Leagues leaguesPageObject = (Leagues) PageObjectProvider.getPageObject("Leagues");
+		leaguesPageObject.navigateBack();
+	}
+
 }

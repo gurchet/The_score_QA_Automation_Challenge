@@ -43,4 +43,10 @@ public class LeageSelectionSteps {
     public void goToTeamsSelectionPage() {
         new League_BusinessFlow().goToTeamsSelectionPage();
     }
+
+    @When("User goes to back to the previous page from league page")
+    public void goToPreviousPage() {
+        new League_BusinessFlow().navigateToPreviousScreen();
+    }
+
 }

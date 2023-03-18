@@ -4,6 +4,8 @@ public abstract class Leagues extends BasePage {
 
     public abstract String getScreenTitle();
 
+    public abstract void navigateBack();
+
     public abstract void selectLeague(String leagueName);
 
     public abstract boolean isLeagueSelected(String leagueName);

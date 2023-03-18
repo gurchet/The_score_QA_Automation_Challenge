@@ -10,6 +10,11 @@ public class IOS_Leagues extends Leagues {
     }
 
     @Override
+    public void navigateBack() {
+
+    }
+
+    @Override
     public void selectLeague(String leagueName) {
 
     }

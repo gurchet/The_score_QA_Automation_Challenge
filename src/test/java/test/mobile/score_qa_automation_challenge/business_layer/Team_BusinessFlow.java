@@ -59,4 +59,9 @@ public class Team_BusinessFlow {
         }
     }
 
+    public void navigateToPreviousScreen(){
+        Teams teams = (Teams) PageObjectProvider.getPageObject("Teams");
+        teams.navigateBack();
+    }
+
     }

@@ -12,6 +12,8 @@ public class Android_Teams extends Teams {
 
     By btnContinue = By.xpath("//*[@text='Continue']");
 
+    By btnBack = By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']");
+
     public Android_Teams(){
         super();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -20,6 +22,11 @@ public class Android_Teams extends Teams {
     @Override
     public String getScreenTitle() {
         return getText(titleText);
+    }
+
+    @Override
+    public void navigateBack() {
+        click(btnBack);
     }
 
     @Override

@@ -9,6 +9,11 @@ public class IOS_Teams extends Teams {
     }
 
     @Override
+    public void navigateBack() {
+
+    }
+
+    @Override
     public void selectTab(String leagueCode) {
 
     }

@@ -16,6 +16,7 @@ Feature: Team Selection in Score application
   Scenario Outline: Verify the teams selection process
     Given User is at home screen
     When User goes to league selection page
+    Then League selection page should get opened
     Then User should be able to select the league "<league>"
     When User goes to the Teams selection page
     Then Team selection page should get opened
@@ -30,3 +31,14 @@ Feature: Team Selection in Score application
     Examples:
       | league | teams   |
       | NHL    | BOS,BUF |
+
+
+  Scenario: Verify the back navigation
+    Given User is at home screen
+    When User goes to league selection page
+    And User goes to the Teams selection page
+    And User goes to back to the previous page from team page
+    Then League selection page should get opened
+    When User goes to back to the previous page from league page
+    Then User is at home screen
+

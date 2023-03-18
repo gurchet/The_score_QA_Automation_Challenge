@@ -4,6 +4,8 @@ public abstract class Teams extends BasePage{
 
     public abstract String getScreenTitle();
 
+    public abstract void navigateBack();
+
     public abstract void selectTab(String leagueCode);
 
     public abstract void selectTeam(String teamName);
