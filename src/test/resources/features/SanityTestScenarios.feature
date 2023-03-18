@@ -1,3 +1,4 @@
+@SanityTests
 Feature: Team Selection in Score application
   Scenario Outline: Verify the league selection process
     Given User is at home screen
@@ -41,4 +42,3 @@ Feature: Team Selection in Score application
     Then League selection page should get opened
     When User goes to back to the previous page from league page
     Then User is at home screen
-
