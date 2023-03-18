@@ -9,8 +9,12 @@ public class Android_Leagues extends Leagues {
 
     By titleText = By.id("com.fivemobile.thescore:id/title_onboarding");
 
+    By chipsElements = By.xpath("//*[@resource-id='com.fivemobile.thescore:id/chips_container']//android.view.ViewGroup");
+
     By btn_allow = By.id("com.fivemobile.thescore:id/btn_allow");
     By btn_permission_allow = By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button");
+
+    By btnContinue = By.xpath("//*[@text='Continue']");
 
     public Android_Leagues(){
         super();
@@ -34,12 +38,12 @@ public class Android_Leagues extends Leagues {
 
     @Override
     public int getTotalLeaguesSelected() {
-        return getTotalMatchedNoOfElements(By.xpath("//*[@resource-id='com.fivemobile.thescore:id/chips_container']//android.view.ViewGroup")) - 1;
+        return getTotalMatchedNoOfElements(chipsElements) - 1;
     }
 
     @Override
     public void continueNext() {
-        click(By.xpath("//*[@text='Continue']"));
+        click(btnContinue);
         handleLocationPopUp();
     }
 

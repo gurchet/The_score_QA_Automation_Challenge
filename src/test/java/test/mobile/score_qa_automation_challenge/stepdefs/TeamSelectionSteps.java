@@ -1,10 +1,9 @@
 package test.mobile.score_qa_automation_challenge.stepdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import test.mobile.score_qa_automation_challenge.business_layer.Team_BusinessFlow;
-
-import java.util.Arrays;
 
 public class TeamSelectionSteps {
 
@@ -18,9 +17,9 @@ public class TeamSelectionSteps {
         new Team_BusinessFlow().selectTab(tabName);
     }
 
-    @Then("User should be able to select the teams {string}")
-    public void selectTeam(String teamName){
-        new Team_BusinessFlow().selectTeam(teamName.split(","));
+    @Then("User should be able to select the teams {string} for {string}")
+    public void selectTeam(String teamCodes, String league){
+        new Team_BusinessFlow().selectTeam(teamCodes.split(","), league);
     }
 
     @Then("User should be able to see the selected {string} and {string}")
@@ -34,9 +33,28 @@ public class TeamSelectionSteps {
     }
 
 
-    @When("User goes to notification settings page")
-    public void goToNotificationSettingsPage(){
-        new Team_BusinessFlow().goToNotificationSettingsPage();
+    @When("User goes to alerts settings page")
+    public void goToAlertsSettingsPage(){
+        new Team_BusinessFlow().goToAlertsSettingsPage();
     }
 
+    @Then("Alerts settings page should get opened")
+    public void verifyIfAlertsPageOpened(){
+        new Team_BusinessFlow().verifyIfTheScreenIsAlertsSettingsScreen();
+    }
+
+    @When("User continue from alerts settings screen")
+    public void continueFromAlertsSettings(){
+        new Team_BusinessFlow().makeItDone();
+    }
+
+    @Then("Dashboard page should get opened")
+    public void checkIfDashboardOpened(){
+        new Team_BusinessFlow().verifyIfTheScreenIsDashboardScreen();
+    }
+
+    @And("User should be able to see the selected {string}")
+    public void checkIfAllSelectedTeamsAvailable(String teams){
+        new Team_BusinessFlow().verifyIfSelectedTeamsAvailableInDashboard(teams.split(","));
+    }
 }

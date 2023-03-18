@@ -1,8 +1,12 @@
 package test.mobile.score_qa_automation_challenge.utilities;
 
 import java.io.FileReader;
+import java.io.IOException;
+
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -19,5 +23,13 @@ public class JSONUtils {
 		return (JSONArray) jsonParser.parse(new FileReader(jsonLocation));
 	}
 
-
+	public static JSONObject getLeaguesObject(String key) {
+		JSONParser jsonParser = new JSONParser();
+		try {
+			return (JSONObject)((JSONObject) jsonParser.parse(new FileReader(System.getProperty("user.dir") + "/" + PropertiesUtils.get("test_data_location")))).get(key);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

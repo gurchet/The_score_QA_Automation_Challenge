@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class Android_Teams extends Teams {
 
     By titleText = By.id("com.fivemobile.thescore:id/title_onboarding");
+    By chipsElements = By.xpath("//*[@resource-id='com.fivemobile.thescore:id/chips_container']//android.view.ViewGroup");
+
+    By btnContinue = By.xpath("//*[@text='Continue']");
 
     public Android_Teams(){
         super();
@@ -36,11 +39,11 @@ public class Android_Teams extends Teams {
 
     @Override
     public int getTotalTeamSelected() {
-        return getTotalMatchedNoOfElements(By.xpath("//*[@resource-id='com.fivemobile.thescore:id/chips_container']//android.view.ViewGroup")) - 1;
+        return getTotalMatchedNoOfElements(chipsElements) - 1;
     }
 
     @Override
     public void continueNext() {
-        click(By.xpath("//*[@text='Continue']"));
+        click(btnContinue);
     }
 }

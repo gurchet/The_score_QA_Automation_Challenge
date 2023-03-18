@@ -4,7 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Objects;
+
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
 /**
@@ -34,7 +37,19 @@ public class DriverManager {
 			return null;
 		}
 
-		AppiumDriver driver = new AppiumDriver(url, DeviceManager.getAvailableDevice().getCapabilities());
+		Device device = DeviceManager.getAvailableDevice();
+		if(Objects.isNull(device)){
+			System.out.println("No connected device found");
+			return null;
+		}
+
+		DesiredCapabilities capabilities = device.getCapabilities();
+		if(Objects.isNull(capabilities)) {
+			System.out.println("No capabilities found for the device "+device.getName());
+			return null;
+		}
+
+		AppiumDriver driver = new AppiumDriver(url, capabilities);
 
 		// using the current thread id to tie the drivers with the test scenario threads
 		drivers.put(Thread.currentThread().getId(), driver);

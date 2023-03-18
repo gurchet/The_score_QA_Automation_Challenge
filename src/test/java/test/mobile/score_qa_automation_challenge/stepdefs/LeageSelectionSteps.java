@@ -34,9 +34,9 @@ public class LeageSelectionSteps {
         new League_BusinessFlow().verifyIfTheScreenIsLeagueSelectionScreen();
     }
 
-    @Then("User should be able to select the leagues {string}")
-    public void selectLeague(String leagueCodes) {
-        new League_BusinessFlow().verifyTheLeaguesSelection(leagueCodes.split(","));
+    @Then("User should be able to select the league {string}")
+    public void selectLeague(String league) {
+        new League_BusinessFlow().verifyTheLeaguesSelection(league.split(","));
     }
 
     @Then("User goes to the Teams selection page")
