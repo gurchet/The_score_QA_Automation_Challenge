@@ -5,6 +5,8 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import test.mobile.score_qa_automation_challenge.base.AppiumService;
 import test.mobile.score_qa_automation_challenge.base.DriverManager;
+import test.mobile.score_qa_automation_challenge.utilities.CommandRunner;
+
 import java.io.IOException;
 
 
@@ -33,7 +35,8 @@ public class Hooks {
     public static void cleanUp(){
         try {
             AppiumService.stopAppiumDriverService();
-        } catch (IOException e) {
+            CommandRunner.runCommand("source ~/.bash_profile;allure serve "+System.getProperty("user.dir") + "/target/surefire-reports/");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

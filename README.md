@@ -29,6 +29,7 @@ This framework is to provide automation solution to the given problem where the 
 - [x] Set the device capabilities in capabilities.json under resources folder
 - [x] Set config.properties according to the requirement
 - [x] Run maven command "mvn test"
+- [x] After run, allure report should get auto launched
 
 
 
