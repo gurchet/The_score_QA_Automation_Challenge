@@ -6,6 +6,8 @@ import test.mobile.score_qa_automation_challenge.utilities.CapabilitiesProvider;
 import test.mobile.score_qa_automation_challenge.utilities.DeviceUtils;
 import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
+import java.io.IOException;
+
 /**
  * @author gurchet.singh
  * @since 15 March 2023
@@ -36,7 +38,12 @@ public class DeviceManager {
 
 		}
 		return null;
-
 	}
 
-}
+
+	public static void installApp(Device device) throws IOException {
+		if(PropertiesUtils.get("app_auto_install").equals("false"))
+			return;
+		DeviceUtils.installAppOnDevice(device.getName(), System.getProperty("user.dir") + "/" + PropertiesUtils.get("app_path"));
+	}
+	}

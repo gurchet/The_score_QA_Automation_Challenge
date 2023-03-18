@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+
+/**
+ * @author gurchet.singh
+ * @since 18 March 2023
+ * @description : This Class is built to handle device related interactions
+ */
+
 public class DeviceUtils {
 
 	// this method returns the list of names of devices currently connected to the machine
@@ -28,5 +35,12 @@ public class DeviceUtils {
 		
 		return connectedDevices;
 	}
-	
+
+	public static void installAppOnDevice(String deviceName, String appPath) throws IOException {
+		try {
+			CommandRunner.runSyncCommand("source ~/.bash_profile;adb -s "+deviceName+" install -r "+appPath);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

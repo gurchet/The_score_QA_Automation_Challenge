@@ -12,6 +12,13 @@ import java.util.*;
 
 public class CommandRunner {
 
+
+    public static int runSyncCommand(String command) throws InterruptedException, IOException {
+        Process p = Runtime.getRuntime().exec(command);
+        return p.waitFor();
+    }
+
+
     public static String runCommand(String command)
             throws IOException {
         BufferedReader br = getBufferedReader(command);

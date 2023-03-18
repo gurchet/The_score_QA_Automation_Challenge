@@ -7,7 +7,6 @@
 		"appType": "native",
 		"appPackage": "com.fivemobile.thescore",
 		"appActivity": ".ui.MainActivity",
-		"noReset": false,
-		"fullReset": true
+		"noReset": false
 	}
 ]

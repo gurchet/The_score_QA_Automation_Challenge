@@ -25,7 +25,7 @@ This framework is to provide automation solution to the given problem where the 
 - [x] Install [cucumber](https://www.jetbrains.com/help/idea/enabling-cucumber-support-in-project.html) plugin in IDE
 - [x] The application under test can be found in resources folder
 - [x] Set the device capabilities in capabilities.json under resources folder
-- [x] Set the device platform in config.properties
+- [x] Set config.properties according to the requirement
 
 
 
@@ -33,7 +33,12 @@ This framework is to provide automation solution to the given problem where the 
 * Behaviour driven features
 * Auto appium server run
 * Auto recognition of connected device
+* Auto app install
 * Shared business flows across device platforms
 * On demand page object loading from page factory
+* Allure reporting
 
 
+### Test Report
+
+![test report](src/test/resources/allure_demo_report_thumbnail.png)
