@@ -1,4 +1,4 @@
-package test.mobile.score_qa_automation_challenge.page_objects.common;
+package test.mobile.score_qa_automation_challenge.page_objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -7,11 +7,9 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import test.mobile.score_qa_automation_challenge.base.DriverManager;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author gurchet.singh
@@ -61,7 +59,7 @@ public class BasePage {
 	}
 
 	public void waitAndSoftClick(By by){
-		new FluentWait(driver)
+		new FluentWait<AppiumDriver>(driver)
 				.withTimeout(Duration.ofSeconds(3))
 				.pollingEvery(Duration.ofMillis(250))
 		        .ignoring(NoSuchElementException.class)

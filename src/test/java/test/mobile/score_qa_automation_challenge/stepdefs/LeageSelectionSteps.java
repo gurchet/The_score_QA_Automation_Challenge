@@ -4,11 +4,8 @@ package test.mobile.score_qa_automation_challenge.stepdefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.datatable.DataTable;
-import test.mobile.score_qa_automation_challenge.business_layer.Home_BusinessFlow;
-import test.mobile.score_qa_automation_challenge.business_layer.League_BusinessFlow;
-
-import java.util.List;
+import test.mobile.score_qa_automation_challenge.page_objects.*;
+import org.junit.Assert;
 
 /**
  * @author gurchet.singh
@@ -20,33 +17,44 @@ public class LeageSelectionSteps {
 
     @Given("User is at home screen")
     public void makeSureIfUserIsAtHomeScreen() {
-        new Home_BusinessFlow().verifyIfTheScreenIsHomeScreen();
+		Home home = new Home();
+		Assert.assertTrue(home.isHomeScreen());
     }
 
 
     @When("User goes to league selection page")
     public void goToLeagueSelection() {
-        new Home_BusinessFlow().goToLeageSelectionPage();
+		Home home = new Home();
+		home.goToLeagueSelectionPage();
     }
 
     @Then("League selection page should get opened")
     public void verifyIfLeaguePageOpened(){
-        new League_BusinessFlow().verifyIfTheScreenIsLeagueSelectionScreen();
+    	League league = new League();
+		Assert.assertEquals("Choose your favorite leagues", league.getScreenTitle());
     }
 
     @Then("User should be able to select the league {string}")
-    public void selectLeague(String league) {
-        new League_BusinessFlow().verifyTheLeaguesSelection(league.split(","));
+    public void selectLeague(String leagues) {
+    	League league = new League();
+    	String[] leaguesArray = leagues.split(",");
+		for (String leagueStr : leaguesArray) {
+			league.selectLeague(leagueStr);
+			Assert.assertTrue(league.isLeagueSelected(leagueStr));
+		}
+		Assert.assertEquals(leaguesArray.length, league.getTotalLeaguesSelected());
     }
 
     @Then("User goes to the Teams selection page")
     public void goToTeamsSelectionPage() {
-        new League_BusinessFlow().goToTeamsSelectionPage();
+    	League league = new League();
+    	league.continueNext();
     }
 
     @When("User goes to back to the previous page from league page")
     public void goToPreviousPage() {
-        new League_BusinessFlow().navigateToPreviousScreen();
+    	League league = new League();
+    	league.navigateBack();
     }
 
 }

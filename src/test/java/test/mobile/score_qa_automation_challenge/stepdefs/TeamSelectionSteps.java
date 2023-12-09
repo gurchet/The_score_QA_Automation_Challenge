@@ -1,66 +1,85 @@
 package test.mobile.score_qa_automation_challenge.stepdefs;
 
+import org.json.simple.JSONObject;
+import org.junit.Assert;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import test.mobile.score_qa_automation_challenge.business_layer.League_BusinessFlow;
-import test.mobile.score_qa_automation_challenge.business_layer.Team_BusinessFlow;
+import test.mobile.score_qa_automation_challenge.page_objects.Alert;
+import test.mobile.score_qa_automation_challenge.page_objects.Team;
+import test.mobile.score_qa_automation_challenge.page_objects.Dashboard;
+import test.mobile.score_qa_automation_challenge.utilities.JSONUtils;
 
 public class TeamSelectionSteps {
 
     @Then("Team selection page should get opened")
     public void verifyIfTeamsPageOpened(){
-        new Team_BusinessFlow().verifyIfTheScreenIsTeamSelectionScreen();
+    	Team team = new Team();
+        Assert.assertEquals("Choose your favorite teams", team.getScreenTitle());
     }
 
     @When("User selects the tab {string}")
     public void selectTabInTeams(String tabName){
-        new Team_BusinessFlow().selectTab(tabName);
+    	Team team = new Team();
+    	team.selectTab(tabName);
     }
 
     @Then("User should be able to select the teams {string} for {string}")
     public void selectTeam(String teamCodes, String league){
-        new Team_BusinessFlow().selectTeam(teamCodes.split(","), league);
+    	Team team = new Team();
+        for(String teamCode : teamCodes.split(",")){
+            team.selectTeam((String)((JSONObject)JSONUtils.getLeaguesObject(league).get("teams")).get(teamCode));
+        }
     }
 
     @Then("User should be able to see the selected {string} and {string}")
     public void verificationOfTeamLeaguesSelections(String leagues, String teams){
+    	Team team = new Team();
         String[] teamsArray = teams.split(",");
         String[] leaguesArray = leagues.split(",");
         String[] allLeaguesAndTeams = new String[teamsArray.length + leaguesArray.length];
         System.arraycopy(teamsArray, 0, allLeaguesAndTeams, 0, teamsArray.length);
         System.arraycopy(leaguesArray, 0, allLeaguesAndTeams, teamsArray.length, leaguesArray.length);
-        new Team_BusinessFlow().verifyTheTeamsSelection(allLeaguesAndTeams);
+        Assert.assertEquals(allLeaguesAndTeams.length, team.getTotalTeamSelected());
     }
 
 
     @When("User goes to alerts settings page")
     public void goToAlertsSettingsPage(){
-        new Team_BusinessFlow().goToAlertsSettingsPage();
+    	Team team = new Team();
+        team.continueNext();
     }
 
     @Then("Alerts settings page should get opened")
     public void verifyIfAlertsPageOpened(){
-        new Team_BusinessFlow().verifyIfTheScreenIsAlertsSettingsScreen();
+    	Alert alert = new Alert();
+        Assert.assertEquals("Never miss a game", alert.getScreenTitle());
     }
 
     @When("User continue from alerts settings screen")
     public void continueFromAlertsSettings(){
-        new Team_BusinessFlow().makeItDone();
+    	Alert alert = new Alert();
+        alert.makeItDone();
     }
 
     @Then("Dashboard page should get opened")
     public void checkIfDashboardOpened(){
-        new Team_BusinessFlow().verifyIfTheScreenIsDashboardScreen();
+    	Dashboard dashboard = new Dashboard();
+        Assert.assertTrue(dashboard.isDashboardScreen());
     }
 
     @And("User should be able to see the selected {string}")
     public void checkIfAllSelectedTeamsAvailable(String teams){
-        new Team_BusinessFlow().verifyIfSelectedTeamsAvailableInDashboard(teams.split(","));
+    	Dashboard dashboard = new Dashboard();
+    	for(String team : teams.split(",")){
+            Assert.assertTrue(dashboard.isChosenTeamDisplayed(team.trim()));
+        }
     }
 
     @When("User goes to back to the previous page from team page")
     public void goToPreviousPage() {
-        new Team_BusinessFlow().navigateToPreviousScreen();
+    	Team team = new Team();
+        team.navigateBack();
     }
 }
