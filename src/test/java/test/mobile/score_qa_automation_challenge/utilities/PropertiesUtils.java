@@ -25,6 +25,7 @@ public class PropertiesUtils {
 			inputStream = new FileInputStream(filePath);
 			properties = new Properties();
 			properties.load(inputStream);
+			properties.putAll(System.getProperties());
 		} catch (FileNotFoundException exception) {
 			exception.printStackTrace();
 		} catch (IOException exception) {
@@ -45,9 +46,5 @@ public class PropertiesUtils {
 
 	public static void put(String key, String value) {
 		properties.setProperty(key, value);
-	}
-
-	public static void putAll(Properties properties) {
-		properties.putAll(properties);
 	}
 }

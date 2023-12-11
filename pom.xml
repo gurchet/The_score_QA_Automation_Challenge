@@ -21,11 +21,11 @@
         <appium_host>${appium_host}</appium_host>
         <appium_port_number>${appium_port_number}</appium_port_number>
         <appium_auto_run>${appium_auto_run}</appium_auto_run>
-        <app_auto_install>${app_auto_install}</app_auto_install>
+        <install_app>${install_app}</install_app>
         <platform>${platform}</platform>
         <app_path>${app_path}</app_path>
         <generate_allure>${generate_allure}</generate_allure>
-        <deviceName>${deviceName}</deviceName>
+        <device_name>${device_name}</device_name>
     </properties>
     <dependencies>
         <dependency>
