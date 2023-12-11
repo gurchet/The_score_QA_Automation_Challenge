@@ -24,7 +24,6 @@
         <install_app>${install_app}</install_app>
         <platform>${platform}</platform>
         <app_path>${app_path}</app_path>
-        <generate_allure>${generate_allure}</generate_allure>
         <device_name>${device_name}</device_name>
     </properties>
     <dependencies>

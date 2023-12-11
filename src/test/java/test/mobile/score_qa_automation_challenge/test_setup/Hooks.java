@@ -44,9 +44,7 @@ public class Hooks {
             if (PropertiesUtils.get("appium_auto_run").equals("true")) {
                 AppiumService.stopAppiumDriverService();
             }
-            if (PropertiesUtils.get("generate_allure").equals("true")) {
-                CommandRunner.runCommand("source ~/.bash_profile;allure serve " + System.getProperty("user.dir") + "/target/surefire-reports/ &");
-            }
+            CommandRunner.runCommand("allure serve " + System.getProperty("user.dir") + "/target/surefire-reports/");
         } catch (Exception e) {
             e.printStackTrace();
         }

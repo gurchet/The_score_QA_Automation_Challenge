@@ -3,13 +3,13 @@ package test.mobile.score_qa_automation_challenge.base;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import test.mobile.score_qa_automation_challenge.test_setup.Hooks;
-import test.mobile.score_qa_automation_challenge.utilities.CommandRunner;
 import test.mobile.score_qa_automation_challenge.utilities.PortUtils;
 import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -26,15 +26,14 @@ import static io.appium.java_client.service.local.flags.GeneralServerFlag.SESSIO
 public class AppiumService {
     public static int portNumber = 4723;
     public static String host = "localhost";
-    private static final Logger logger = Logger.getLogger(Hooks.class.getName());
+    private static final Logger logger = Logger.getLogger(AppiumService.class.getName());
 
     static AppiumDriverLocalService service;
 
     public static void startAppiumDriverService() throws IOException {
-        portNumber = PortUtils.getAvailablePort();
         host = PropertiesUtils.get("appium_host");
+        portNumber = PortUtils.getAvailablePort();
         logger.log(Level.INFO, "Starting Appium server at " + host + ":" + portNumber);
-//        Runtime.getRuntime().exec("appium -p " + portNumber);
         service = new AppiumServiceBuilder()
                 .usingPort(portNumber)
                 .withArgument(LOG_LEVEL, "info")
@@ -45,11 +44,11 @@ public class AppiumService {
 
     public static void stopAppiumDriverService() throws IOException {
         logger.log(Level.INFO, String.format("Stopping Appium server at " + host + ":" + portNumber));
-//            CommandRunner.runSyncCommand("kill -9 " + portNumber);
-        service.stop();
+        if(!Objects.isNull(service))
+            service.stop();
     }
 
-    public static URL getAppiumServerUrl() throws MalformedURLException {
+    public static URL getAppiumServerUrl() {
         return service.getUrl();
     }
 

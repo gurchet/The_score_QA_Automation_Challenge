@@ -1,9 +1,13 @@
 package test.mobile.score_qa_automation_challenge.utilities;
 
+import test.mobile.score_qa_automation_challenge.base.DeviceManager;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -13,6 +17,7 @@ import java.util.StringTokenizer;
  */
 
 public class DeviceUtils {
+	private static final Logger logger = Logger.getLogger(DeviceUtils.class.getName());
 
 	// this method returns the list of names of devices currently connected to the machine
 	public static List<String> getListOfConnectedDevices() {
@@ -37,8 +42,9 @@ public class DeviceUtils {
 	}
 
 	public static void installAppOnDevice(String deviceName, String appPath) throws IOException {
+		logger.log(Level.INFO, "App located at "+appPath+" is being installed on device "+deviceName);
 		try {
-			CommandRunner.runSyncCommand("source ~/.bash_profile;adb -s "+deviceName+" install -r "+appPath);
+			CommandRunner.runSyncCommand("adb -s "+deviceName+" install -r "+appPath);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

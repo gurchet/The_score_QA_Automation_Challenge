@@ -1,14 +1,19 @@
 package test.mobile.score_qa_automation_challenge.base;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import io.appium.java_client.AppiumDriver;
+import test.mobile.score_qa_automation_challenge.utilities.CommandRunner;
+import test.mobile.score_qa_automation_challenge.utilities.DeviceUtils;
+import test.mobile.score_qa_automation_challenge.utilities.PropertiesUtils;
 
 /**
  * @author gurchet.singh
@@ -18,7 +23,7 @@ import io.appium.java_client.AppiumDriver;
  */
 
 public class DriverManager {
-	private static final Logger logger = Logger.getLogger(DeviceManager.class.getName());
+	private static final Logger logger = Logger.getLogger(DriverManager.class.getName());
 	private static HashMap<Long, HashMap<String,Object>> drivers = new HashMap<Long, HashMap<String,Object>>();
 
 	public static AppiumDriver getAppiumDriver() {
@@ -43,9 +48,21 @@ public class DriverManager {
 			return null;
 		}
 
+		if(PropertiesUtils.get("install_app").equalsIgnoreCase("true")){
+            try {
+                DeviceUtils.installAppOnDevice(device.getName(), PropertiesUtils.get("app_path"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 		AppiumDriver driver = null;
 		try {
-			URL url = AppiumService.getAppiumServerUrl();
+			URL url = null;
+			if(PropertiesUtils.get("appium_auto_run").equals("true"))
+				url = AppiumService.getAppiumServerUrl();
+			else
+				url = new URL("http://"+ PropertiesUtils.get("appium_host") + ":" +PropertiesUtils.get("appium_port_number"));
 			driver = new AppiumDriver(url, device.getCapabilities());
 		}
 		catch(Exception e) {
