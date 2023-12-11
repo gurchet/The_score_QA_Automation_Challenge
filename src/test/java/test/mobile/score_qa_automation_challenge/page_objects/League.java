@@ -42,10 +42,9 @@ public class League extends BasePage {
 
     public void handleLocationPopUp(){
         if(isElementPresent(btn_allow)){
-            click(btn_allow);
-            click(btn_permission_allow);
+            waitAndSoftClick(btn_allow);
         }else if(isElementPresent(btn_permission_allow)){
-            click(btn_permission_allow);
+            waitAndSoftClick(btn_permission_allow);
         }else{
             return;
         }

@@ -1,5 +1,7 @@
 @SanityTests
+@Feature=ScoreApplication
 Feature: Team Selection in Score application
+  @VerifyLeagueSelection
   Scenario Outline: Verify the league selection process
     Given User is at home screen
     When User goes to league selection page
@@ -14,6 +16,7 @@ Feature: Team Selection in Score application
       | leagues     |
       | NHL,NFL,MLB |
 
+  @VerifyTeamSelection
   Scenario Outline: Verify the teams selection process
     Given User is at home screen
     When User goes to league selection page
@@ -33,7 +36,7 @@ Feature: Team Selection in Score application
       | league | teams   |
       | NHL    | BOS,BUF |
 
-
+  @VerifyBackNavigation
   Scenario: Verify the back navigation
     Given User is at home screen
     When User goes to league selection page

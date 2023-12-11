@@ -1,6 +1,6 @@
 package test.mobile.score_qa_automation_challenge.base;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.Capabilities;
 
 /**
  * @author gurchet.singh
@@ -11,14 +11,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class Device {
 
 	private String name;
-	private String os;
 	private boolean availability;
-	private DesiredCapabilities capabilities;
+	private Capabilities capabilities;
 	
 	
-	public Device(String name, String os, boolean availability, DesiredCapabilities capabilities){
+	public Device(String name, boolean availability, Capabilities capabilities){
 		this.name = name;
-		this.os = os;
 		this.availability = availability;
 		this.capabilities = capabilities;	
 	}
@@ -29,12 +27,6 @@ public class Device {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getOs() {
-		return os;
-	}
-	public void setOs(String os) {
-		this.os = os;
-	}
 	public boolean isAvailability() {
 		return availability;
 	}
@@ -42,10 +34,10 @@ public class Device {
 		this.availability = availability;
 	}
 	
-	public DesiredCapabilities getCapabilities() {
+	public Capabilities getCapabilities() {
 		return capabilities;
 	}
-	public void setCapabilities(DesiredCapabilities capabilities) {
+	public void setCapabilities(Capabilities capabilities) {
 		this.capabilities = capabilities;
 	}
 	
@@ -59,7 +51,7 @@ public class Device {
         
         Device device = (Device)object;
         
-        if(this.getName().equals(device.getName()) && this.getOs().equals(device.getOs()))
+        if(this.getName().equals(device.getName()))
         	return true;
         else
         	return false;

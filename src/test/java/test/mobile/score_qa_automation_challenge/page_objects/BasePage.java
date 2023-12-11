@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import test.mobile.score_qa_automation_challenge.base.DriverManager;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author gurchet.singh
@@ -24,7 +25,8 @@ public class BasePage {
 	protected AppiumDriver driver;
 
 	public BasePage() {
-		this.driver = DriverManager.getAppiumDriver();
+		driver = DriverManager.getAppiumDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public void click(By by) {

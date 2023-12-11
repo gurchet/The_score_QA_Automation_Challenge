@@ -1,12 +1,10 @@
 package test.mobile.score_qa_automation_challenge.base;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * @author gurchet.singh
@@ -27,34 +25,21 @@ public class DriverManager {
 				return (AppiumDriver)entry.getValue().get("driver");
 		}
 
-		Device device = DeviceManager.getAvailableDevice();
+		Device device = DeviceManager.getDevice();
 		if(Objects.isNull(device)){
-			System.out.println("No connected device found");
-			return null;
-		}
-
-		DesiredCapabilities capabilities = device.getCapabilities();
-		if(Objects.isNull(capabilities)) {
-			System.out.println("No capabilities found for the device "+device.getName());
-			return null;
-		}
-
-		try {
-			DeviceManager.installApp(device);
-		} catch (IOException e) {
-			System.out.println("App could not be installed the device "+device.getName());
+			System.out.println("No device found");
 			return null;
 		}
 
 		AppiumDriver driver = null;
 		try {
-			URL url = AppiumService.getAppiumServerUrl();
-			driver = new AppiumDriver(url, capabilities);
+			String url = AppiumService.getAppiumServerUrl();
+			URL urlMain = new URL(url);
+			driver = new AppiumDriver(urlMain, device.getCapabilities());
 		}
-		catch(Exception e){
+		catch(Exception e) {
 			e.printStackTrace();
 		}
-
 		HashMap<String,Object> driverMap = new HashMap<String,Object>();
 		driverMap.put("device",device);
 		driverMap.put("driver",driver);
