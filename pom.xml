@@ -18,13 +18,6 @@
         <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <appium_host>${appium_host}</appium_host>
-        <appium_port_number>${appium_port_number}</appium_port_number>
-        <appium_auto_run>${appium_auto_run}</appium_auto_run>
-        <install_app>${install_app}</install_app>
-        <platform>${platform}</platform>
-        <app_path>${app_path}</app_path>
-        <device_name>${device_name}</device_name>
     </properties>
     <dependencies>
         <dependency>
