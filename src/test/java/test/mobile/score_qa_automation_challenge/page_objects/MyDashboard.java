@@ -2,7 +2,7 @@ package test.mobile.score_qa_automation_challenge.page_objects;
 
 import org.openqa.selenium.By;
 
-public class Dashboard extends BasePage {
+public class MyDashboard extends BasePage {
 
     By imgProfile = By.className("android.widget.ImageButton");
 

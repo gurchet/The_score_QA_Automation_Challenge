@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import test.mobile.score_qa_automation_challenge.page_objects.Alert;
 import test.mobile.score_qa_automation_challenge.page_objects.Team;
-import test.mobile.score_qa_automation_challenge.page_objects.Dashboard;
+import test.mobile.score_qa_automation_challenge.page_objects.MyDashboard;
 import test.mobile.score_qa_automation_challenge.utilities.JSONUtils;
 
 public class TeamSelectionSteps {
@@ -65,13 +65,13 @@ public class TeamSelectionSteps {
 
     @Then("Dashboard page should get opened")
     public void checkIfDashboardOpened(){
-    	Dashboard dashboard = new Dashboard();
+    	MyDashboard dashboard = new MyDashboard();
         Assert.assertTrue(dashboard.isDashboardScreen());
     }
 
     @And("User should be able to see the selected {string}")
     public void checkIfAllSelectedTeamsAvailable(String teams){
-    	Dashboard dashboard = new Dashboard();
+    	MyDashboard dashboard = new MyDashboard();
     	for(String team : teams.split(",")){
             Assert.assertTrue(dashboard.isChosenTeamDisplayed(team.trim()));
         }
