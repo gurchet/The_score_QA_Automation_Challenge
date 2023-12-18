@@ -28,7 +28,7 @@ This framework is to provide automation solution to the given problem where the 
 - [x] Set the device capabilities in capabilities.json under resources folder
 - [x] Set config.properties according to the requirement(You can also pass the same from maven)
 - [x] Run the appium server at 4723 port
-- [x] Run maven command "clean install -Dtest=TestRunner -Dcucumber.filter.tags=@VerifyBackNavigation -Dappium_host=127.0.0.1 -Dappium_port_number=4723 -Dappium_auto_run=false -Dinstall_app=false -Dplatform=ANDROID -Dapp_path={} -Ddevice_name={}"
+- [x] Run maven command "clean install -Dtest=TestRunner -Dcucumber.filter.tags=@VerifyBackNavigation -Dappium_host=127.0.0.1 -Dappium_port_number=4723 -Dappium_path=/wd/hub -Dappium_auto_run=false -Dinstall_app=false -Dplatform=ANDROID -Dapp_path={} -Ddevice_name={}"
 - [x] After run, allure report should get auto launched
 
 
