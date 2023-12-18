@@ -20,7 +20,7 @@ public class DeviceManager {
 
     // This method build and returns device object
     public static Device getDevice() {
-        String deviceName = PropertiesUtils.get("deviceName");
+        String deviceName = PropertiesUtils.get("device_name");
         try {
             DesiredCapabilities capabilities = CapabilitiesProvider.get(deviceName);
             if (capabilities != null) {

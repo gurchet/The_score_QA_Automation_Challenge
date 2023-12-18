@@ -62,7 +62,7 @@ public class DriverManager {
 			if(PropertiesUtils.get("appium_auto_run").equals("true"))
 				url = AppiumService.getAppiumServerUrl();
 			else
-				url = new URL("http://"+ PropertiesUtils.get("appium_host") + ":" +PropertiesUtils.get("appium_port_number"));
+				url = new URL("http://"+ PropertiesUtils.get("appium_host") + ":" +PropertiesUtils.get("appium_port_number") + PropertiesUtils.get("appium_path"));
 			driver = new AppiumDriver(url, device.getCapabilities());
 		}
 		catch(Exception e) {

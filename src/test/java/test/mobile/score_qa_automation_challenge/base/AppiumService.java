@@ -15,6 +15,7 @@ import java.util.logging.Level;
 
 import static io.appium.java_client.service.local.flags.GeneralServerFlag.LOG_LEVEL;
 import static io.appium.java_client.service.local.flags.GeneralServerFlag.SESSION_OVERRIDE;
+import static io.appium.java_client.service.local.flags.GeneralServerFlag.BASEPATH;
 
 
 /**
@@ -38,6 +39,7 @@ public class AppiumService {
                 .usingPort(portNumber)
                 .withArgument(LOG_LEVEL, "info")
                 .withArgument(SESSION_OVERRIDE)
+                .withArgument(BASEPATH, PropertiesUtils.get("appium_path"))
                 .build();
         service.start();
     }
